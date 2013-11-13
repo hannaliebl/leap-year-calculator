@@ -1,3 +1,8 @@
+$(function() {
+	$("p#second-form-danger-text").hide();
+	$("p#third-form-danger-text").hide();
+});
+
 // is a single year a leap year?
 function isLeapYear(year) {
 	if ((year % 4 === 0 && year % 100 != 0) || (year % 100 === 0 && year % 400 === 0)) {
@@ -16,14 +21,14 @@ function leapYearRange(year_one, year_two) {
 	var new_array = [];
 	range.forEach(
 		function(year) { 
-			if ((year % 4 === 0 && year % 100 != 0) || (year % 100 === 0 && year % 400 === 0))
+			if (isLeapYear(year))
 				new_array.push(year);
 		}
 	);
 	return new_array;
 };
 
-// check whether current year is leap year, if not, return next leap year
+// first form - check whether current year is leap year, if not, return next leap year
 $(function() {
 	$("button#next-leap-year").click(function() {
 		$("p#show-next-leap-year").empty();
@@ -45,10 +50,10 @@ $(function() {
 $(function() {
 	$("form#leap-year-finder").submit(function() {
 		$("p#answer-single-year").empty();
-		$("p.text-danger").addClass("hidden");
+		$("p#second-form-danger-text").hide();
 		var inputtedyear = $("input#year").val();
 		if (isNaN(inputtedyear) === true) {
-			$("p.text-danger").removeClass("hidden");
+			$("p#second-form-danger-text").show();
 		} else {
 		var result = isLeapYear(inputtedyear);
 		if (result === inputtedyear) {
@@ -65,15 +70,15 @@ $(function() {
 // last form field - display all leap years within a given range as an unordered list
 $(function() {
 	$("form#leap-year-range-finder").submit(function() {
-		$("p.text-danger.bottom").addClass("hidden");
+		$("p#third-form-danger-text").hide();
 		$("ul#leap-year-range").empty();
 		$("h2#leap-year-range-heading").empty();
-		var inputtedyear_one = $("input#first-year").val();
-		var inputtedyear_two = $("input#second-year").val();
+		var inputtedyear_one = parseInt($("input#first-year").val());
+		var inputtedyear_two = parseInt($("input#second-year").val());
 		if (isNaN(inputtedyear_two) === true || isNaN(inputtedyear_one) === true || inputtedyear_two <= inputtedyear_one) {
-			$("p.text-danger.bottom").removeClass("hidden");
+			$("p#third-form-danger-text").show();
 		} else {
-		$("h2#leap-year-range-heading").removeClass("hidden").append('All the Leap Years Between' + ' ' + inputtedyear_one + ' ' + 'and' + ' ' + inputtedyear_two + ' are:');
+		$("h2#leap-year-range-heading").append('All the Leap Years Between' + ' ' + inputtedyear_one + ' ' + 'and' + ' ' + inputtedyear_two + ' are:').show();
 		$('html, body').animate({
 			scrollTop: $("h2#leap-year-range-heading").offset().top
 			}, 500);

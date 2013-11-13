@@ -43,7 +43,7 @@
                 <input id="year" class="form-control" type="text" placeholder="Enter a year">
               </div>
                 <button type="submit" class="btn btn-default inline-btn">Test</button>
-                <p class="hidden text-danger">Please enter a valid year</p>
+                <p class="text-danger" id="second-form-danger-text">Please enter a valid year</p>
             </form>
             <p id="answer-single-year" class="answer">
             </p>
@@ -68,10 +68,10 @@
               <input id="second-year" class="form-control" type="text" placeholder="Second year">
             </div>
                   <button type="submit" class="btn btn-default inline-btn">Show the range of leap years</button>
-                  <p class="hidden text-danger bottom">Please enter a valid year in both fields, and make sure the first year comes before the second year.</p>
+                  <p class="text-danger" id="third-form-danger-text">Please enter a valid year in both fields, and make sure the first year comes before the second year.</p>
               
         </form>
-        <h2 id="leap-year-range-heading" class="hidden answer"></h2>
+        <h2 id="leap-year-range-heading" class="answer"></h2>
         <ul id="leap-year-range" class="answer">
         </ul>
         </div>
